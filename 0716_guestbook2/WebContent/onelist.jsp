@@ -61,7 +61,7 @@
 						<c:otherwise>
 							<td>
 								<img alt="" src="upload/${vo.file_name}" style="width: 100px;"><br>
-								<a href="download.jsp">${vo.file_name}</a>
+								<a href="download.jsp?path=upload&file_name=${vo.file_name}">${vo.file_name}</a>
 							</td>
 						</c:otherwise>
 					</c:choose>
