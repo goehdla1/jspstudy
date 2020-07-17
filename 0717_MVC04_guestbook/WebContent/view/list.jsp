@@ -43,7 +43,7 @@ table,th,td{border: 1px solid black; padding: 3px}
 							<tr>
 								<td>${vs.count }</td>
 								<td>${k.name}</td>
-								<td><a href="/0717_MVC04_guestbook/MyController?cmd=onelist?idx=${k.idx}">${k.subject}</a></td>
+								<td><a href="/0717_MVC04_guestbook/MyController?cmd=onelist&idx=${k.idx}">${k.subject}</a></td>
 								<td>${k.regdate.substring(0,10)}</td>
 							</tr>
 						</c:forEach>

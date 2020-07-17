@@ -15,7 +15,7 @@
 		if(f.pwd.value == "${vo.pwd}"){
 			var chk = confirm("정말 삭제할까요?");
 			if(chk){
-				f.action = "delete_ok.jsp";
+				f.action = "/0717_MVC04_guestbook/MyController?cmd=delete_ok";
 				f.submit();
 			}else{
 				history.go(-1);

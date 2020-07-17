@@ -16,7 +16,7 @@
 	function update_ok(f) {
 		// 비밀번호 체크하기 
 		if(f.pwd.value == "${vo.pwd}"){
-			f.action="update_ok.jsp";
+			f.action="/0717_MVC04_guestbook/MyController?cmd=update_ok";
 			f.submit();
 		}else{
 			alert("비밀번호가 틀립니다.\n다시 입력해 주세요");

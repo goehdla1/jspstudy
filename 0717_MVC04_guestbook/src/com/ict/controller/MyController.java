@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ict.model.Command;
 import com.ict.model.DeleteCommand;
+import com.ict.model.DeleteOkCommand;
 import com.ict.model.ListCommand;
 import com.ict.model.OneListCommand;
 import com.ict.model.UpdateCommand;
+import com.ict.model.UpdateOkCommand;
 import com.ict.model.WriteCommand;
 import com.ict.model.WriteOkCommand;
 
@@ -50,8 +52,14 @@ public class MyController extends HttpServlet {
 		case "update":
 			comm = new UpdateCommand();
 			break;
+		case "update_ok":
+			comm = new UpdateOkCommand();
+			break;
 		case "delete":
 			comm = new DeleteCommand();
+			break;
+		case "delete_ok":
+			comm = new DeleteOkCommand();
 			break;
 		}
 

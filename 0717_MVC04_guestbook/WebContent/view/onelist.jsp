@@ -12,11 +12,11 @@
 </style>
 <script type="text/javascript">
 	function update_go(f) {
-		f.action="update.jsp";
+		f.action="/0717_MVC04_guestbook/MyController?cmd=update";
 		f.submit();
 	}
 	function delete_go(f) {
-		f.action="delete.jsp";
+		f.action="/0717_MVC04_guestbook/MyController?cmd=delete";
 		f.submit();
 	}
 </script>
