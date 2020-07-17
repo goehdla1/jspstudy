@@ -24,7 +24,8 @@ public class ByeController extends HttpServlet {
 		Bye bye = new Bye();
 		String path = bye.exec(request, response);
 		// jsp 화면으로 페이지 이동 
-		response.sendRedirect(path);
+		// response.sendRedirect(path);
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 }
 

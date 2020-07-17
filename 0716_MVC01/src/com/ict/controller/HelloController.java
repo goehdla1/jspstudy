@@ -25,6 +25,7 @@ public class HelloController extends HttpServlet {
 		// 실행시키고 jsp 정보를 받는다.
 		String path = hello.exec(request, response);
 		// jsp 화면으로 페이지 이동 
-		response.sendRedirect(path);
+		// response.sendRedirect(path);
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 }

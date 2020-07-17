@@ -27,7 +27,9 @@ public class HiController extends HttpServlet {
 		Hi hi = new Hi();
 		// 실행시키고 jsp 정보를 받는다.
 		String path = hi.exec(request, response);
+		
 		// jsp 화면으로 페이지 이동 
-		response.sendRedirect(path);
+		// response.sendRedirect(path); (request 정보는 사라짐)
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 }

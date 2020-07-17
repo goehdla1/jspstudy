@@ -22,7 +22,7 @@
 <body>
 	<div align="center">
 		<h2>방명록</h2>
-		<hr />
+		<hr>
 		<p>[ <a href="write.jsp">방명록쓰기</a> ]</p>
 		<form method="post">
 			<table>

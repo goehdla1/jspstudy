@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> Bye 결과 </h1>
+	<h1> Bye 결과 </h1>
+	<h2>
+		<li> 이름 : ${name} </li>
+		<li> 나이 : ${requestScope.age} </li>
+		<li> 메세지 : ${msg} </li>
+	</h2>
 </body>
 </html>
