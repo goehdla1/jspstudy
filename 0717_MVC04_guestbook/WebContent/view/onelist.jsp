@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> 방 명 록 </title>
 <style type="text/css">
 	a { text-decoration: none;}
 	table{width: 500px; border-collapse:collapse; }
@@ -55,6 +55,5 @@
 			</table>
 		</form>
 	</div>
-
 </body>
 </html>

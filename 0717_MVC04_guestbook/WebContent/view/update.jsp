@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   
@@ -32,7 +31,7 @@
 	<div align="center">
 		<h2>방명록 : 수정화면</h2>
 		<hr />
-		<p>[<a href="list.jsp">목록으로 이동</a>]</p>
+		<p>[<a href="/0717_MVC04_guestbook/MyController?cmd=list">목록으로 이동</a>]</p>
 		<form method="post">
 			<table>
 				<tr align="center">
@@ -53,7 +52,8 @@
 				</tr>
 				<tr align="left">
 					<td colspan="2" style="padding-left:50px;">
-						<textarea rows="8" cols="60" name="content">${vo.content}</textarea></td>
+						<textarea rows="8" cols="60" name="content">${vo.content}</textarea>
+					</td>
 				</tr>
 				<tfoot>
 					<tr align="center">

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bbs">
+	<select id="list" resultType="com.ict.db.BVO">
+		select * from bbs_t order by b_idx
+	</select>
+	<insert id="insert" parameterType="com.ict.db.BVO">
+		insert into bbs_t values(bbs_t_seq.nextval,#{subject},#{writer},#{content},#{file_name},#{pwd},sysdate,0)
+	</insert>
+	<!-- 조회수 업데이트 -->
+	<update id="hitup" parameterType="String">
+		update bbs_t set hit = hit + 1 where b_idx = #{b_idx}
+	</update>
+	<!-- 상세보기 -->
+	<select id="onelist" parameterType="String" resultType="com.ict.db.BVO">
+		select * from bbs_t where b_idx = #{b_idx}
+	</select>
+	<!-- 삭제하기 -->
+		<delete id="delete" parameterType="String">
+		delete from bbs_t where b_idx = #{b_idx}
+		</delete>
+	<!-- 업데이트 하기 -->
+	<update id="update" parameterType="com.ict.db.BVO">
+		update bbs_t set subject=#{subject},writer=#{writer},content=#{content},file_name=#{file_name} where b_idx = #{b_idx}
+	</update>
+</mapper>

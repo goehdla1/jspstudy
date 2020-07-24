@@ -12,14 +12,6 @@
 </style>
 <script type="text/javascript">
 	function save_go(f) {
-		// 유효성 검사
-		var v1  = f.name.value;
-		if(v1==""){
-			alert("이름을 입력하세요");
-			f.name.focus();
-			return;
-		}
-		
 		f.action="/0717_MVC04_guestbook/MyController?cmd=write_ok";
 		f.submit();
 	}

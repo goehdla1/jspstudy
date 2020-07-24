@@ -34,7 +34,7 @@
 	<div align="center">
 		<h2>방명록 : 삭제화면</h2>
 		<hr />
-		<p>[<a href="list.jsp">목록으로 이동</a>]</p>
+		<p>[<a href="/0717_MVC04_guestbook/MyController?cmd=list">목록으로 이동</a>]</p>
 		<form method="post">
 			<table>
 				<tr align="center">

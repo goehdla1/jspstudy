@@ -12,9 +12,8 @@ public class OneListCommand implements Command{
 		String idx = request.getParameter("idx");
 		VO vo = DAO.getInstance().getOneList(idx);
 		
+		// 수정과 삭제을 위해서 session 저장하자
 		request.getSession().setAttribute("vo", vo);
-		
 		return "view/onelist.jsp";
 	}
-
 }

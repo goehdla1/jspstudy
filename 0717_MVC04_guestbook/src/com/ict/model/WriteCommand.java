@@ -6,9 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 public class WriteCommand implements Command{
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		
 		return "view/write.jsp";
 	}
-	
 }
-	
