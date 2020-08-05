@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="/MyController">
-	<jsp:param value="list" name="cmd"/>
-</jsp:forward>
-
+	<jsp:forward page="/MyController">
+		<jsp:param value="list" name="cmd"/>
+	</jsp:forward>
 </body>
 </html>

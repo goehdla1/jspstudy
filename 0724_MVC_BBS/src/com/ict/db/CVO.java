@@ -1,8 +1,8 @@
 package com.ict.db;
 
 public class CVO {
-	private String c_idx, writer, content, pwd, write_date, b_idx;
-	public CVO() {	}
+	private String c_idx, writer, content, pwd,	write_date,	b_idx;
+	public CVO() {}
 	public CVO(String c_idx, String writer, String content, String pwd, String write_date, String b_idx) {
 		super();
 		this.c_idx = c_idx;
@@ -48,6 +48,5 @@ public class CVO {
 	public void setB_idx(String b_idx) {
 		this.b_idx = b_idx;
 	}
-	
 	
 }

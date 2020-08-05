@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shop_t">
+
+<select resultType="com.ict.db.VO" parameterType="String" id="list">select * from shop_t where category = #{category} order by idx desc </select>
+
+<select resultType="com.ict.db.VO" parameterType="String" id="onelist">select * from shop_t where idx = #{idx} </select>
+
+<select resultType="com.ict.db.MVO" parameterType="com.ict.db.MVO" id="login">select * from members where m_id = #{m_id} and m_pw = #{m_pw} </select>
+
+<insert parameterType="com.ict.db.VO" id="add">insert into shop_t values(shop_seq.nextval, #{category}, #{p_num},#{p_name},#{p_company},#{p_price},#{p_saleprice},#{p_image_s},#{p_image_l},#{p_content},sysdate) </insert>
+
+<select resultType="com.ict.db.CVO" parameterType="Map" id="cartlist">select * from cart where id=#{id} and p_num=#{p_num} </select>
+
+<insert parameterType="com.ict.db.CVO" id="cartInsert">insert into cart values(cart_seq.nextval, #{p_num}, #{p_name},#{p_price},1,#{id}) </insert>
+
+<update parameterType="com.ict.db.CVO" id="cartUpdate">update cart set p_su = p_su + 1 where id=#{id} and p_num=#{p_num} </update>
+
+<select resultType="com.ict.db.CVO" parameterType="String" id="cartall">select * from cart where id = #{id} </select>
+
+<update parameterType="com.ict.db.CVO" id="cartup">update cart set p_su=#{p_su} where id=#{id} and p_num=#{p_num} </update>
+
+<delete id="cartDel" parameterType="com.ict.db.CVO">dalete from cart where id=#{id} and p_num=#{p_num}</delete>
+</mapper>
+
+
+
+

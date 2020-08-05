@@ -44,19 +44,19 @@
 </style>
 <script type="text/javascript">
 	function list_go(f) {
-		f.action="/MyController?cmd=list";
+		f.action="/MyController?cmd=list"
 		f.submit();				
 	}
-	function update_go(f) {
-		if ("${bvo.pwd}" == f.pwd.value) {
-			f.action="/MyController?cmd=update_ok";
-			f.submit();		
-	}else {
-		alert("비밀번호가 틀립니다.\n 다시 입력하세주세요");
-		f.pwd.value = "";
-		f.pwd.focus();
-		return;
-	}
+	function update_ok(f) {
+		if("${bvo.pwd}" == f.pwd.value){
+			f.action = "/MyController?cmd=update_ok";
+			f.submit();
+		}else{
+			alert("비밀번호가 틀립니다.\n다시입력해주세요");
+			f.pwd.value="";
+			f.pwd.focus();
+			return;
+		}
 		
 	}
 </script>
@@ -69,11 +69,11 @@
 			<tbody>
 				<tr>
 					<th>제목:</th>
-					<td><input type="text" name="subject" size="45" value="${bvo.subject}"/></td>
+					<td><input type="text" name="subject" size="45" value="${bvo.subject}"></td>
 				</tr>
 				<tr>
 					<th>이름:</th>
-					<td><input type="text" name="writer" size="12" value="${bvo.writer}"/></td>
+					<td><input type="text" name="writer" size="12" value="${bvo.writer}"></td>
 				</tr>
 				<tr>
 					<th>내용:</th>
@@ -87,18 +87,20 @@
 				</tr>
 				<tr>
 					<th>첨부파일:</th>
-					<td><input type="file" name="file_name"/>${bvo.file_name}</td>
+					<td><input type="file" name="file_name">${bvo.file_name}</td>
 				</tr>
 				<tr>
 					<th>비밀번호:</th>
-					<td><input type="password" name="pwd" size="12"/></td>
+					<td><input type="password" name="pwd" size="12"></td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="button" value="보내기" onclick="update_ok(this.form)"/>
+						<input type="button" value="수정하기" onclick="update_ok(this.form)"/>
 						<input type="reset" value="다시"/>
 						<input type="button" value="목록" onclick="list_go(this.form)"/>
+						<%-- 수정시 파일을 업로드 하지 않을 것을 대비 이전 파일이름을 넘긴다.--%>
 						<input type="hidden" name="f_name" value="${bvo.file_name}">
+						<input type="hidden" name="cPage" value="${cPage}">
 					</td>
 				</tr>
 			</tbody>

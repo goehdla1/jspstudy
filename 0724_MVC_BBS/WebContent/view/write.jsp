@@ -44,7 +44,7 @@
 </style>
 <script type="text/javascript">
 	function list_go(f) {
-		f.action="/MyController?cmd=list";
+		f.action="/MyController?cmd=list"
 		f.submit();				
 	}
 	function send_go(f) {

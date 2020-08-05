@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 <style type="text/css">
 #bbs table {
-	width: 580px;
-	margin: 0 auto;
-	margin-top: 20px;
+	width:580px;
+	margin:0 auto;
+	margin-top:20px;
 	border: 1px solid black;
 	border-collapse: collapse;
 	font-size: 14px;
@@ -28,33 +28,13 @@
 	padding: 4px 10px;
 }
 
-.no {
-	width: 15%
-}
-
-.subject {
-	width: 30%
-}
-
-.writer {
-	width: 20%
-}
-
-.reg {
-	width: 20%
-}
-
-.hit {
-	width: 15%
-}
-
-.title {
-	background: lightsteelblue
-}
-
-.odd {
-	background: silver
-}
+.no { width: 15% }
+.subject { 	width: 30% }
+.writer {	width: 20% }
+.reg {	width: 20% }
+.hit {	width: 15% }
+.title {	background: lightsteelblue }
+.odd {	background: silver }
 
 /* paging */
 table tfoot ol.paging {
@@ -94,11 +74,9 @@ table tfoot ol.paging li a:hover {
 	font-weight: bold;
 }
 </style>
-
 <script type="text/javascript">
 	function write_go() {
-		location.href = "/MyController?cmd=write"
-
+		location.href = "/MyController?cmd=write";
 	}
 </script>
 </head>
@@ -115,19 +93,18 @@ table tfoot ol.paging li a:hover {
 					<th class="hit">조회수</th>
 				</tr>
 			</thead>
-
 			<tbody>
 				<c:choose>
-					<c:when test="${empty list }">
+					<c:when test="${empty list}">
 						<tr>
-							<td colspan="5"><h2>자료가 존재하지 않습니다.</h2></td>
+							<td colspan="5"><h2> 자료가 존재하지 않습니다. </h2></td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="k" items="${list}" varStatus="vs">
 							<tr>
-								<td>${vs.count}</td>
-								<td><a href="/MyController?cmd=onelist&b_idx=${k.b_idx}">${k.subject}</a></td>
+								<td>${paging.totalRecord-((paging.nowPage-1)*paging.numPerPage+vs.index)}</td>
+								<td><a href="/MyController?cmd=onelist&b_idx=${k.b_idx}&cPage=${paging.nowPage}">${k.subject}</span> </td>
 								<td>${k.writer}</td>
 								<td>${k.write_date.substring(0,10)}</td>
 								<td>${k.hit}</td>
@@ -135,23 +112,49 @@ table tfoot ol.paging li a:hover {
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-
 			</tbody>
-
 			<!-- 페이지기법 -->
 			<tfoot>
 				<tr>
 					<td colspan="4">
 						<ol class="paging">
-							<!-- 이전 -->
-
-							<!-- 블록안에 들어간 페이지번호들 -->
-
-							<!-- 다음 -->
-
+						<!-- 이전 -->
+						<c:choose>
+							<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
+								<li class="disable">이전으로</li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="/MyController?cmd=list&cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
+							</c:otherwise>
+						</c:choose>
+						
+						<!-- 블록안에 들어간 페이지번호들 -->
+						<c:forEach begin="${paging.beginBlock}" end="${paging.endBlock }" step="1" var="k">
+							<!-- 현재 페이지이냐 아니야 구분 -->
+							<c:choose>
+								<c:when test="${k==paging.nowPage}">
+								    <li class="now">${k}</li>	
+								</c:when>
+								<c:otherwise>
+									<li><a href="/MyController?cmd=list&cPage=${k}">${k}</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						
+						<!-- 다음 -->
+						<c:choose>
+							<c:when test="${paging.endBlock >= paging.totalPage }">
+								<li class="disable">다음으로</li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="/MyController?cmd=list&cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+							</c:otherwise>
+						</c:choose>
 						</ol>
 					</td>
-					<td><button onclick="write_go()">글쓰기</button></td>
+					<td>
+						<button onclick="write_go()">글쓰기</button>
+					</td>
 				</tr>
 			</tfoot>
 		</table>

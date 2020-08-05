@@ -43,27 +43,26 @@
 	.odd {background:silver}
 </style>
 <script type="text/javascript">
+	function list_go(f) {
+		f.action = "/MyController?cmd=list";
+		f.submit();
+	}
 	function delete_ok(f) {
-		if ("${bvo.pwd}" == f.pwd.value) {
-				var chk = confirm("정말 삭제 할까요?");
-				if(chk){
-					f.action="/MyController?cmd=delete_ok";
-					f.submit();
-				}else{
-					history.go(-1);
-				}
-		}else {
-			alert("비밀번호가 틀립니다.\n 다시 입력하세주세요");
-			f.pwd.value = "";
+		if("${bvo.pwd}" == f.pwd.value){
+			var chk = confirm("정말삭제할까요?");
+			if(chk){
+				f.action = "/MyController?cmd=delete_ok";
+				f.submit();
+			}else{
+				history.go(-1);
+			}
+		}else{
+			alert("비밀번호가 틀립니다.\n다시입력해주세요");
+			f.pwd.value="";
 			f.pwd.focus();
 			return;
 		}
 		
-	
-	}
-	function list_go(f) {
-		f.action = "/MyController?cmd=list"
-		f.submit();
 	}
 </script>
 </head>
@@ -77,16 +76,17 @@
 					<th>비밀번호 확인:</th>
 					<td><input type="password" name="pwd" size="20"></td>
 				</tr>
-				<tfoot>
-					<tr>
-						<td colspan="2">
-							<input type="button" value="삭제" onclick="delete_ok(this.form)">
-							<input type="reset" value="취소">
-							<input type="button" value="목록" onclick="list_go(this.from)">
-						</td>
-					</tr>
-				</tfoot>
 			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="2">
+						<input type="button" value="삭제" onclick="delete_ok(this.form)">
+						<input type="reset" value="취소">
+						<input type="button" value="목록" onclick="list_go(this.form)">
+							<input type="hidden" name="cPage" value="${cPage}">
+					</td>
+				</tr>
+			</tfoot>
 		</table>
 	</form>
 	</div>
