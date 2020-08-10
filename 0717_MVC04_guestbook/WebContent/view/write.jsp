@@ -4,18 +4,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 방 명 록 </title>
-<style type="text/css">
-	a { text-decoration: none;}
-	table{width: 500px; border-collapse:collapse; }
-	table,tr,td{border: 1px solid black; padding: 3px}
-</style>
-<script type="text/javascript">
-	function save_go(f) {
-		f.action="/0717_MVC04_guestbook/MyController?cmd=write_ok";
-		f.submit();
-	}
-</script>
+	<title> 방 명 록 </title>
+	<style type="text/css">
+		a { text-decoration: none;}
+		table{width: 500px; border-collapse:collapse; }
+		table,tr,td{border: 1px solid black; padding: 3px}
+	</style>
+	<script type="text/javascript">
+		function save_go(f) {
+			var arr = [f.name, f.subject, f.email, f.pwd]
+			
+			for (var k in arr) {
+				if(arr[k].value == ""){
+					switch (arr[k].name) {
+						case "name": alert("이름을 입력하시오."); break;
+						case "subject": alert("제목을 입력하시오."); break;
+						case "email": alert("이메일을 입력하시오."); break;
+						case "pwd": alert("비밀번호를 입력하시오."); break;	
+					}
+					
+					arr[k].focus();
+					return;
+				}
+			}
+			
+			f.action="/0717_MVC04_guestbook/MyController?cmd=write";
+			f.submit();
+		}
+	</script>
 </head>
 <body>
 	<div align="center">
@@ -25,19 +41,19 @@
 		<form method="post">
 			<table>
 				<tr align="center">
-					<td bgcolor="#99ccff">작성자</td>
+					<td bgcolor="#99ccff">*작성자</td>
 					<td><input type="text" name="name" size ="20"/></td>
 				</tr>
 				<tr align="center">
-					<td bgcolor="#99ccff">제  목</td>
+					<td bgcolor="#99ccff">*제  목</td>
 					<td><input type="text" name="subject" size ="20"/></td>
 				</tr>
 				<tr align="center">
-					<td bgcolor="#99ccff">email</td>
+					<td bgcolor="#99ccff">*email</td>
 					<td><input type="text" name="email" size ="20"/></td>
 				</tr>
 				<tr align="center">
-					<td bgcolor="#99ccff">비밀번호</td>
+					<td bgcolor="#99ccff">*비밀번호</td>
 					<td><input type="password" name="pwd" size ="20"/></td>
 				</tr>
 				<tr align="center">

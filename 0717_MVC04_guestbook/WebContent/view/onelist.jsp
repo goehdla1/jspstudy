@@ -4,44 +4,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 방 명 록 </title>
-<style type="text/css">
-	a { text-decoration: none;}
-	table{width: 500px; border-collapse:collapse; }
-	table,tr,td{border: 1px solid black; padding: 3px}
-</style>
-<script type="text/javascript">
-	function update_go(f) {
-		f.action="/0717_MVC04_guestbook/MyController?cmd=update";
-		f.submit();
-	}
-	function delete_go(f) {
-		f.action="/0717_MVC04_guestbook/MyController?cmd=delete";
-		f.submit();
-	}
-</script>
+	<title> 방 명 록 </title>
+	<style type="text/css">
+		a { text-decoration: none;}
+		table{width: 500px; border-collapse:collapse; }
+		table,tr,td{border: 1px solid black; padding: 3px}
+	</style>
+	<script type="text/javascript">
+		function update_go(f) {
+			f.action="view/update.jsp"
+			f.submit();
+			
+		}
+		
+		function delete_go(f) {
+			f.action="view/delete.jsp"
+			f.submit();
+		}
+		
+	</script>
 </head>
 <body>
 	<div align="center">
-		<h2>방명록 : 상세화면</h2>
+		<h2>방명록 : 내용화면</h2>
 		<hr />
 		<p>[<a href="/0717_MVC04_guestbook/MyController?cmd=list">목록으로 이동</a>]</p>
 		<form method="post">
 			<table>
 				<tr align="center">
+					<td bgcolor="#99ccff">번  호</td>
+					<td>${num}</td>
+				</tr>
+				<tr align="center">
 					<td bgcolor="#99ccff">작성자</td>
-					<td>${vo.name }</td>
+					<td>${vo.name}</td>
 				</tr>
 				<tr align="center">
 					<td bgcolor="#99ccff">제  목</td>
-					<td>${vo.subject }</td>
+					<td>${vo.subject}</td>
 				</tr>
 				<tr align="center">
 					<td bgcolor="#99ccff">email</td>
-					<td>${vo.email }</td>
+					<td>${vo.email}</td>
 				</tr>
-				<tr align="left">
-					<td colspan="2" style="padding-left:50px;"><pre>${vo.content }</pre></td>
+				<tr align="center">
+					<td colspan="2">
+						<textarea rows="10" cols="60" name="content">${vo.content}</textarea>
+					</td>
 				</tr>
 				<tfoot>
 					<tr align="center">

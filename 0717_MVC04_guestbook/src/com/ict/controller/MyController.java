@@ -10,45 +10,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ict.model.Command;
-import com.ict.model.DeleteCommand;
-import com.ict.model.Delete_OkCommand;
-import com.ict.model.ListCommand;
-import com.ict.model.OneListCommand;
-import com.ict.model.UpdateCommand;
-import com.ict.model.Update_OkCommand;
-import com.ict.model.WriteCommand;
-import com.ict.model.Write_OkCommand;
+import com.ict.model.Delete_cmd;
+import com.ict.model.List_cmd;
+import com.ict.model.Onelist_cmd;
+import com.ict.model.Update_cmd;
+import com.ict.model.Write_cmd;
 
 @WebServlet("/MyController")
 public class MyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	doPost(request, response);
-    }
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
 		String cmd = request.getParameter("cmd");
 		Command comm = null;
-		switch (cmd) {
-			case "list":  comm = new ListCommand();  break;
-			case "write":  comm = new WriteCommand();  break;
-			case "write_ok":  comm = new Write_OkCommand();  break;
-			case "onelist":  comm = new OneListCommand();  break;
-			case "delete":  comm = new DeleteCommand();  break;
-			case "update":  comm = new UpdateCommand();  break;
-			case "delete_ok":  comm = new Delete_OkCommand();  break;
-			case "update_ok":  comm = new Update_OkCommand();  break;
-		}
+		String path = "";
 		
-		String path = comm.exec(request, response);
+		switch (cmd) {
+			case "list": comm = new List_cmd(); break;
+			case "write": comm = new Write_cmd(); break;
+			case "onelist": comm = new Onelist_cmd(); break;
+			case "update": comm = new Update_cmd(); break;
+			case "delete":comm = new Delete_cmd(); break;
+				
+		}
+		path = comm.exec(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
+		
+		
 	}
+
 }
-
-
-
-
-
