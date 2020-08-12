@@ -31,7 +31,7 @@
 						str += "<td>"+$(this).find("name").text() +"</td>";
 						str += "<td>"+$(this).find("age").text() +"</td>";
 						str += "<td>"+$(this).find("reg").text() +"</td>";
-						str += "<td><button>삭제</buttion></td>";
+						str += "<td><button id='del' name='"+$(this).find("idx").text()+"'>삭제</buttion></td>";
 						str += "</tr>";
 					});
 					$("#tbody").append(str);
@@ -40,8 +40,10 @@
 					alert("읽기실패")
 				}
 			});
+			
 		}
-		getList();
+		
+		
 		// 아이디 중복 체크
 		// data : 서버주소에 갈때 같이 넘어가는 파라미터를 말함
 		$("#btn1").click(function() {
@@ -52,19 +54,25 @@
 				type : "get",
 				success : function(data) {
 					if(data.trim() == "사용불가"){
-						alert("아이디가 중복 입니다\n다시 입력해 주세요");	
-						// $("#m_id").val() = "";
-					
+						alert("아이디가 중복입니다\n다시입력해주세요");
+						$("#m_id").val("");
+						$("#btn2").attr("disabled", true); // 버튼 비활성
 					}else{
-						alert("아이디 사용가능 합니다.")
+						alert("아이디사용가능합니다.");
+						$("#btn2").attr("disabled", false); // 버튼 활성
 					}
 				}, 
 				error : function() {
-					alert("읽기실패")
+					alert("읽기실패");
 				}
-			});
+			}); //ajax 끝
+			
+			// ajax 시 리로딩 금지 
+			 return false;
+			
 		});
-		// 여러개의 정보를 파라미터값으로 전달 할때 : serialize(); => form 태그에 있는 input 타입 정보들이 전부 넘어 가진다.
+		
+		// form태그가 가지고 있는 input type 정보를 파라미터값을 전달 할때 : serialize()
 		$("#btn2").click(function() {
 			$.ajax({
 				url : "/MyController3",
@@ -72,19 +80,44 @@
 				dataType : "text",
 				type : "get",
 				success : function(data) {
-					if(data.trim() == '1'){
 					// 성공
-						alert("가입성공");
-					}else{
-					// 실패
-						alert("가입실패");
+					if(data.trim() == '1'){
+						alert("가입 성공");
+					}else{  // 실패
+						alert("가입 실패");
 					}
 				}, 
 				error : function() {
-					alert("읽기실패")
+					alert("읽기실패");
 				}
 			});
 		});
+		// 삭제 버튼 클릭 이벤트
+		// 동적으로 생성된 요소 이벤트 처리 : on 사용 , click() 이벤트 사용 x
+		$("table").on("click","#del", function() {
+			$.ajax({
+				url : "/MyController4",
+				data : "idx="+$(this).attr("name"),
+				dataType : "text",
+				type : "get",
+				success : function(data) {
+					// 성공
+					if(data.trim() == '1'){
+						alert("삭제 성공");
+						$("#tbody").empty()
+						getList();
+					}else{  // 실패
+						alert("삭제 실패");
+						
+					}
+				}, 
+				error : function() {
+					alert("읽기실패");
+				}
+			});
+		});
+		
+		getList();
 		
 	});
 </script>
@@ -107,7 +140,7 @@
 				</tr>
 			</tbody>
 			<tfoot>
-				<tr><td colspan="4" align="center"><button id="btn2"> 가입하기 </button> </td></tr>
+				<tr><td colspan="4" align="center"><button id="btn2" disabled> 가입하기 </button> </td></tr>
 			</tfoot>
 		</table>
 	</form>

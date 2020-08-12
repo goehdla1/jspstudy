@@ -12,4 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <insert id="insert" parameterType="com.ict.db.VO">
 	insert into members values(members_seq.nextval,#{m_id},#{m_pw},#{m_name},#{m_age},sysdate)
 </insert>
+<delete id="delete" parameterType="String">
+	delete from members where idx = #{idx}
+</delete>
 </mapper>

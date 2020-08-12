@@ -36,6 +36,13 @@ public class DAO {
 		ss.commit();
 		return result ;
 	}
+	
+	public static int getDelete(String idx) {
+			int result  = 0 ;
+			result = getSession().delete("delete", idx);
+			return result;
+		
+	}
 }
 
 
