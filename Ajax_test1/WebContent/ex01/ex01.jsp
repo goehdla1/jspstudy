@@ -18,6 +18,17 @@
 	
 	// 화면에 출력 : innerHTML
 	document.body.append(request.responseText);
+	
+	
+	
 	</script>
+	
+	<h2> EL 산술 연산 사용 예제 </h2>
+                <p>
+            <li> 15 + 7 = ${15+7} </li>
+            <li> 15 - 7 =  ${15-7} </li>
+            <li> 15 * 7 =  ${15*7} </li>
+            <li> 15 / 7 = ${15/7} </li>
+        </p>
 </body>
 </html>

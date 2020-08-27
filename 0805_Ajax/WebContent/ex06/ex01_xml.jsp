@@ -45,5 +45,7 @@ table,th,td{
 <body>
 <div> xml 파일 가져오기 </div>
 	<div id="out"></div>
+	<select >
+	</select>
 </body>
 </html>

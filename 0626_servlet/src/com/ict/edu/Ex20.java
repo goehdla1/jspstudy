@@ -59,6 +59,7 @@ public class Ex20 extends HttpServlet {
 			// 사칙연산
 			Project02 p02 = new Project02();
 			result = p02.exec(request, response);
+			
 			break;
 		case "6":
 			// 알바비 계산
